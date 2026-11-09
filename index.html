@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Velha Pro</title>
+    <link rel="stylesheet" href="style.css">
+<body>
+
+    <!-- Container de Confetes -->
+    <div id="confetti-container" class="confetti-container"></div>
+
+    <!-- Cabeçalho -->
+    <header>
+        <h1>Jogo da Velha</h1>
+        <p>HTML, CSS & JS Puro sem frameworks</p>
+    </header>
+
+    <!-- Estrutura Principal -->
+    <main>
+
+        <!-- Painel de Opções -->
+        <div class="config-panel">
+            <div class="toggle-group">
+                <button id="btn-pvp" class="btn-toggle active" onclick="setMode('pvp')">2 Jogadores</button>
+                <button id="btn-ai" class="btn-toggle" onclick="setMode('ai')">Contra IA</button>
+            </div>
+
+            <!-- Opções exclusivas da IA -->
+            <div id="ai-options" class="ai-options hidden">
+                <div class="option-row">
+                    <span>Seu Símbolo:</span>
+                    <div class="symbol-selector">
+                        <button id="sym-x" class="btn-option active" onclick="setSymbol('X')">X (Azul)</button>
+                        <button id="sym-o" class="btn-option" onclick="setSymbol('O')">O (Rosa)</button>
+                    </div>
+                </div>
+                <div class="option-row">
+                    <span>Dificuldade IA:</span>
+                    <div class="difficulty-selector">
+                        <button id="diff-easy" class="btn-option" onclick="setDifficulty('easy')">Fácil</button>
+                        <button id="diff-medium" class="btn-option" onclick="setDifficulty('medium')">Médio</button>
+                        <button id="diff-hard" class="btn-option active" onclick="setDifficulty('hard')">Impossível</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Placar -->
+        <div class="scoreboard">
+            <div id="score-card-x" class="score-card player-x active-turn">
+                <div id="label-x" class="score-title">Jogador X</div>
+                <div id="score-x" class="score-value">0</div>
+            </div>
+            <div class="score-card ties">
+                <div class="score-title">Empates</div>
+                <div id="score-ties" class="score-value">0</div>
+            </div>
+            <div id="score-card-o" class="score-card player-o">
+                <div id="label-o" class="score-title">Jogador O</div>
+                <div id="score-o" class="score-value">0</div>
+            </div>
+        </div>
+
+        <!-- Banner de Status do Turno -->
+        <div id="status-banner" class="status-banner">
+            <span>Vez de:</span>
+            <span id="turn-indicator" class="turn-badge x">X</span>
+        </div>
+
+        <!-- Tabuleiro -->
+        <div class="board-container">
+            <div class="board">
+                <button class="cell" onclick="handleCellClick(0)" id="cell-0" aria-label="Casa 1"></button>
+                <button class="cell" onclick="handleCellClick(1)" id="cell-1" aria-label="Casa 2"></button>
+                <button class="cell" onclick="handleCellClick(2)" id="cell-2" aria-label="Casa 3"></button>
+                <button class="cell" onclick="handleCellClick(3)" id="cell-3" aria-label="Casa 4"></button>
+                <button class="cell" onclick="handleCellClick(4)" id="cell-4" aria-label="Casa 5"></button>
+                <button class="cell" onclick="handleCellClick(5)" id="cell-5" aria-label="Casa 6"></button>
+                <button class="cell" onclick="handleCellClick(6)" id="cell-6" aria-label="Casa 7"></button>
+                <button class="cell" onclick="handleCellClick(7)" id="cell-7" aria-label="Casa 8"></button>
+                <button class="cell" onclick="handleCellClick(8)" id="cell-8" aria-label="Casa 9"></button>
+            </div>
+        </div>
+
+        <!-- Botões de Ação -->
+        <div class="controls">
+            <button class="btn-action" onclick="resetGame(false)">
+                &#8634; Reiniciar Partida
+            </button>
+            <button class="btn-action btn-reset-score" onclick="resetScores()" title="Zerar Placar">
+                &#128465;
+            </button>
+        </div>
+
+    </main>
+
+    <footer>
+        Desenvolvido com HTML5, CSS3 e JavaScript Puro
+    </footer>
+
+    <!-- Modal de Resultado -->
+    <div id="result-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div id="modal-title" class="modal-title">Fim de Jogo</div>
+            <div id="modal-subtitle" class="modal-subtitle">Jogador X venceu a partida!</div>
+            <button class="btn-modal" onclick="closeModal()">Jogar Novamente</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
